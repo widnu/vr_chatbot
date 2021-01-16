@@ -95,31 +95,8 @@ public class Bot : MonoBehaviour
 
         // Start dictation
         dictationRecognizer = new DictationRecognizer();
-        dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
+        
         dictationRecognizer.Start();
-    }
-
-
-    /// <summary>
-    /// Stop microphone capture.
-    /// </summary>
-    public void StopCapturingAudio()
-    {
-        botState = BotState.Processing;
-        dictationRecognizer.Stop();
-    }
-
-    /// <summary>
-    /// This handler is called every time the Dictation detects a pause in the speech. 
-    /// </summary>
-    private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
-    {
-        // Update UI with dictation captured
-        Debug.Log($"User just said: {text}");      
-
-        // Send dictation to Bot
-        StartCoroutine(SendMessageToBot(text, botId, botName, "message"));
-        StopCapturingAudio();
     }
 
     /// <summary>

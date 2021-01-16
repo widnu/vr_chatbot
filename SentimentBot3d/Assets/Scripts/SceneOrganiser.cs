@@ -28,12 +28,6 @@ public class SceneOrganiser : MonoBehaviour
     /// </summary>
     void Start ()
     {
-        // Add the GazeInput class to this object
-        gameObject.AddComponent<GazeInput>();
-
-        // Add the Interactions class to this object
-        gameObject.AddComponent<Interactions>();
-
         // Create the Bot in the scene
         CreateBotInScene();
     }
