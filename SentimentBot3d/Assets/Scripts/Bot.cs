@@ -148,16 +148,16 @@ public class Bot : MonoBehaviour
         }
 
         // The following call is necessary to create and inject an activity of type //"conversationUpdate" to request a first "introduction" from the Bot Service.
-        //StartCoroutine(SendMessageToBot("", botId, botName, "conversationUpdate"));
+        StartCoroutine(SendMessageToBot("", botId, botName, "conversationUpdate"));
         //StartCoroutine(SendMessageToBot("", botId, botName, "message"));
-        StartCoroutine(SendMessageToBot("how much", botId, botName, "message"));
+        //StartCoroutine(SendMessageToBot("how much", botId, botName, "message"));
     }
 
     /// <summary>
     /// Send the user message to the Bot Service in form of activity
     /// and call for a response
     /// </summary>
-    private IEnumerator SendMessageToBot(string message, string fromId, string fromName, string activityType)
+    internal IEnumerator SendMessageToBot(string message, string fromId, string fromName, string activityType)
     {
         Debug.Log($"SendMessageCoroutine: {conversation.ConversationId}, message: {message} from Id: {fromId} from name: {fromName}");
 
@@ -216,6 +216,7 @@ public class Bot : MonoBehaviour
             yield return unityWebRequest1.SendWebRequest();
 
             string jsonResponse = unityWebRequest1.downloadHandler.text;
+            Debug.Log("jsonResponse: " + jsonResponse);
 
             ActivitiesRootObject root = new ActivitiesRootObject();
             root = JsonConvert.DeserializeObject<ActivitiesRootObject>(jsonResponse);

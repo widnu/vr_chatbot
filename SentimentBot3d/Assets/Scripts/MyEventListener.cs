@@ -9,6 +9,18 @@ public class MyEventListener : MonoBehaviour, IPointerClickHandler
     public bool onClick = true;            // is click allowed on button?
     public bool onDoubleClick = false;    // is double-click allowed on button?
    
+   /// <summary>
+    /// Use this variable to identify the Bot Id
+    /// Can be any value
+    /// </summary>
+    private string botId = "MRBotId";
+
+    /// <summary>
+    /// Use this variable to identify the Bot Name
+    /// Can be any value
+    /// </summary>
+    private string botName = "MRBotName";
+    
     public void OnPointerClick(PointerEventData data)
     {        
         // get interval between this click and the previous one (check for double click)
@@ -29,7 +41,9 @@ public class MyEventListener : MonoBehaviour, IPointerClickHandler
             Debug.Log("test onclick");
 
             Bot.Instance.SetBotResponseText("Requesting Conversation...");
-            StartCoroutine(Bot.Instance.StartConversation());
+            //StartCoroutine(Bot.Instance.StartConversation());
+
+            StartCoroutine(Bot.Instance.SendMessageToBot("how much", botId, botName, "message"));
         }
    
         // double click
